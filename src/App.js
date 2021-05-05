@@ -6,9 +6,9 @@ import HomeScreen from "./screens/HomeScreen";
 import "./_app.scss";
 
 function App() {
-  const [toggleSideBar, UseToggleSideBar] = useState(false);
+  const [toggleSideBar, setToggleSideBar] = useState(false);
 
-  const handleToggleSideBar = () => UseToggleSideBar((value) => !value);
+  const handleToggleSideBar = () => setToggleSideBar((value) => !value);
 
   return (
     <>
