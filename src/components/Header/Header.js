@@ -1,7 +1,7 @@
 import React from "react";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
-import { MdNotifications, MdApps } from "react-icons/md";
+import { MdNotifications, MdApps, MdMovieCreation } from "react-icons/md";
 import "./_header.scss";
 import profile from "../../files/images/profile.png";
 
@@ -25,8 +25,9 @@ const Header = ({ handleToggleSideBar }) => {
         </button>
       </form>
       <div className="header__icons">
-        <MdNotifications size={28} />
+        <MdMovieCreation size={28} />
         <MdApps size={28} />
+        <MdNotifications size={28} />
         <img src={profile} alt="" />
       </div>
     </div>

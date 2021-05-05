@@ -1,12 +1,11 @@
 @import "../../base.scss";
 
 .sidebar {
-  background: $black-secondary;
+  background: $black-primary;
   width: 250px;
   height: 90vh;
   display: flex;
   flex-direction: column;
-  padding-top: 2rem;
   transition: transform 0.2s ease-in;
 
   li {
@@ -21,6 +20,7 @@
       font-weight: 500;
       letter-spacing: 0.4px;
       margin-left: 1rem;
+      color: $text-white;
     }
     &:hover {
       background: $border-color;
