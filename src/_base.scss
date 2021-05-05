@@ -21,3 +21,10 @@ body {
   font-size: "Roboto", sans-selif;
   letter-spacing: 0.1px;
 }
+@mixin for-long-titles($numberOfTextLines) {
+  // when the title is long then it will collapse at two lines and put ... sign
+  display: -webkit-box;
+  -webkit-line-clamp: $numberOfTextLines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
