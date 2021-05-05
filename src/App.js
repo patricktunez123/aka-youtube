@@ -3,6 +3,7 @@ import { Container } from "react-bootstrap";
 import Header from "./components/Header";
 import SideBar from "./components/SideBar";
 import HomeScreen from "./screens/HomeScreen";
+// import Login from "./screens/Login";
 import "./_app.scss";
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <HomeScreen />
         </Container>
       </div>
+      {/* <Login /> */}
     </>
   );
 }
