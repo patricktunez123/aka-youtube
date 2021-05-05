@@ -1,0 +1,86 @@
+@import "../../base";
+
+.header {
+  background: $black-primary;
+  display: flex;
+  height: 10vh;
+  width: 100%;
+  justify-content: space-between;
+  padding: 1rem 3rem;
+  align-items: center;
+
+  &__menu {
+    display: none;
+  }
+  &__logo {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+    display: block;
+  }
+  form {
+    flex: 0.6;
+    padding: 0.1rem;
+    display: flex;
+    margin: 0 1rem;
+    border-radius: 3px;
+    border: 1.2px solid;
+    background-color: $black-primary;
+
+    input {
+      width: 100%;
+      background: transparent;
+      color: $text-color;
+      border: none;
+      font-weight: 500;
+      padding: 0.3rem;
+
+      &:focus {
+        outline: none;
+      }
+    }
+    button {
+      background: transparent;
+      color: $text-color;
+      border: none;
+      padding: 0 1.25rem;
+      &:focus {
+        border: none;
+      }
+    }
+  }
+  &__icons {
+    display: flex;
+    flex: 0.15;
+    justify-content: space-around;
+    align-items: center;
+  }
+  img {
+    width: 40px;
+    border-radius: 50%;
+    object-fit: contain;
+    margin-left: 5px;
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .header {
+    padding: 1rem;
+
+    form {
+      flex: 1;
+    }
+
+    &__menu {
+      display: block;
+    }
+
+    &__logo {
+      display: none;
+    }
+
+    &__icons > *:not(img) {
+      display: none;
+    }
+  }
+}
