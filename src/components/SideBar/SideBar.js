@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   MdSubscriptions,
   MdExitToApp,
@@ -10,42 +10,60 @@ import {
 } from "react-icons/md";
 import "./_sideBar.scss";
 
+const menus = [
+  {
+    name: "Home",
+    icon: <MdHome size={23} />,
+  },
+  {
+    name: "Subscription",
+    icon: <MdSubscriptions size={23} />,
+  },
+  {
+    name: "Liked videos",
+    icon: <MdThumbUp size={23} />,
+  },
+  {
+    name: "History",
+    icon: <MdHistory size={23} />,
+  },
+  {
+    name: "Library",
+    icon: <MdLibraryBooks size={23} />,
+  },
+  {
+    name: "IDK!",
+    icon: <MdSentimentDissatisfied size={23} />,
+  },
+  {
+    name: "Logout",
+    icon: <MdExitToApp size={23} />,
+  },
+];
 const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
+  const [activeMenu, setActiveMenu] = useState("Home");
+  const handleClick = (value) => {
+    setActiveMenu(value);
+  };
   return (
     <nav
       className={toggleSideBar ? "sidebar open" : "sidebar"}
       onClick={() => handleToggleSideBar()}
     >
-      <li>
-        <MdHome size={23} />
-        <span>Home</span>
-      </li>
-      <li>
-        <MdSubscriptions size={23} />
-        <span>Subscription</span>
-      </li>
-      <li>
-        <MdThumbUp size={23} />
-        <span>Liked videos</span>
-      </li>
-      <li>
-        <MdHistory size={23} />
-        <span>History</span>
-      </li>
-      <li>
-        <MdLibraryBooks size={23} />
-        <span>Library</span>
-      </li>
-      <li>
-        <MdSentimentDissatisfied size={23} />
-        <span>IDK!</span>
-      </li>
-      <hr />
-      <li>
-        <MdExitToApp size={23} />
-        <span>Logout</span>
-      </li>
-      <hr />
+      {menus.map((menu, index) => (
+        <>
+          {menu.name === "Logout" ? <hr /> : null}
+          <li
+            key={index}
+            className={activeMenu === menu.name ? "active" : ""}
+            onClick={() => handleClick(menu.name)}
+          >
+            {menu.icon}
+            <span>{menu.name}</span>
+          </li>
+          {menu.name === "Logout" ? <hr /> : null}
+        </>
+      ))}
     </nav>
   );
 };
