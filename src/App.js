@@ -1,30 +1,36 @@
-import React, { useState } from "react";
-import { Container } from "react-bootstrap";
-import Header from "./components/Header";
-import SideBar from "./components/SideBar";
+import React from "react";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Layout from "./layout";
+import Login from "./screens/Login";
+import Page404 from "./screens/Page404";
 import HomeScreen from "./screens/HomeScreen";
-// import Login from "./screens/Login";
 import "./_app.scss";
 
 function App() {
-  const [toggleSideBar, setToggleSideBar] = useState(false);
-
-  const handleToggleSideBar = () => setToggleSideBar((value) => !value);
-
   return (
-    <>
-      <Header handleToggleSideBar={handleToggleSideBar} />
-      <div className="app__container">
-        <SideBar
-          toggleSideBar={toggleSideBar}
-          handleToggleSideBar={handleToggleSideBar}
-        />
-        <Container fluid className="app__main">
-          <HomeScreen />
-        </Container>
-      </div>
-      {/* <Login /> */}
-    </>
+    <Router>
+      <Switch>
+        <Route path="/" exact>
+          <Layout>
+            <HomeScreen />
+          </Layout>
+        </Route>
+
+        <Route path="/search" exact>
+          <Layout>
+            <h1>Search here</h1>
+          </Layout>
+        </Route>
+
+        <Route path="/login" exact>
+          <Login />
+        </Route>
+
+        <Route>
+          <Page404 />
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 

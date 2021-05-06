@@ -1,0 +1,38 @@
+@import "../../_base.scss";
+
+.page404 {
+  background: $bg-gray;
+  height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    img {
+      object-fit: contain;
+    }
+    p {
+      color: $black-primary;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    span {
+      display: flex;
+
+      input,
+      button {
+        padding: 0.2rem;
+        border: none;
+      }
+    }
+    .back {
+      margin-top: 2rem;
+      padding: 0 1rem;
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
