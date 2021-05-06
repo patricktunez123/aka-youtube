@@ -51,10 +51,9 @@ const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
       onClick={() => handleToggleSideBar()}
     >
       {menus.map((menu, index) => (
-        <>
+        <div key={index}>
           {menu.name === "Logout" ? <hr /> : null}
           <li
-            key={index}
             className={activeMenu === menu.name ? "active" : ""}
             onClick={() => handleClick(menu.name)}
           >
@@ -62,7 +61,7 @@ const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
             <span>{menu.name}</span>
           </li>
           {menu.name === "Logout" ? <hr /> : null}
-        </>
+        </div>
       ))}
     </nav>
   );
