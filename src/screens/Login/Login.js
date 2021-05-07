@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import firebase from "firebase/app";
 import auth from "../../config/firebase";
@@ -12,6 +12,7 @@ const Login = () => {
   const handleLogin = async () => {
     try {
       const provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
       const response = await auth.signInWithPopup(provider);
       dispatch(loginSuccess(response.additionalUserInfo.profile));
     } catch (error) {
@@ -19,11 +20,11 @@ const Login = () => {
     }
   };
 
-  // useEffect(() => {
-  //   handleLogin();
-  // });
+  useEffect(() => {
+    handleLogin();
+  });
 
-  // console.log("this is the profile", profile);
+  console.log("this is the profile", profile);
 
   return (
     <div className="login">
