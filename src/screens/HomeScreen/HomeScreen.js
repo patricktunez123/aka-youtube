@@ -19,7 +19,7 @@ const HomeScreen = () => {
       <Row className="screen">
         {videos &&
           videos.map((video) => (
-            <Col key={video.id} lg={3} md={4}>
+            <Col key={video?.videoId || video.id} lg={3} md={4}>
               <Video video={video} />
             </Col>
           ))}
