@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { getVideosByCategory } from "../../redux/actions/videos/videos.action";
+import {
+  getVideos,
+  getVideosByCategory,
+} from "../../redux/actions/videos/videos.action";
 import "./_categoriesBar.scss";
 
 const categories = ["All", "ReactJS", "Music", "Football"];
@@ -11,7 +14,11 @@ const CategoriesBar = () => {
 
   const handleClick = (value) => {
     setActiveItem(value);
-    dispatch(getVideosByCategory(value));
+    if (value === "All") {
+      dispatch(getVideos());
+    } else {
+      dispatch(getVideosByCategory(value));
+    }
   };
 
   return (
