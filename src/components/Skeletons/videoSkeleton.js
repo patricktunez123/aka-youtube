@@ -8,12 +8,17 @@ const videoSkeleton = () => {
         <Skeleton height={180} />
         <div>
           <Skeleton
-            style={{ margin: "0.5rem" }}
+            style={{
+              marginLeft: "0.5rem",
+              marginRight: "0.5rem",
+              marginTop: "0.7rem",
+            }}
             circle
-            height={40}
-            width={40}
+            height={25}
+            width={25}
           />
-          <Skeleton height={40} width="75%" />
+          <Skeleton height={20} width="75%" />
+          <Skeleton style={{ marginLeft: "2.6rem" }} height={20} width="65%" />
         </div>
       </SkeletonTheme>
     </div>
