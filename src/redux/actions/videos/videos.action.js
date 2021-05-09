@@ -1,7 +1,7 @@
 import req from "../../../api";
 import { videoActionTypes } from "../../constraints/actionTypes";
 
-export const getVideos = () => async (dispatch) => {
+export const getVideos = () => async (dispatch, getState) => {
   dispatch({
     type: videoActionTypes.HOME_VIDEO_REQUEST,
   });
@@ -13,7 +13,7 @@ export const getVideos = () => async (dispatch) => {
         chart: "mostPopular",
         regionCode: "US",
         maxResults: 20,
-        pageToken: "",
+        pageToken: getState().videosReducer.nextPageToken,
         key: process.env.REACT_APP_YOUTUBE_API_KEY,
       },
     });

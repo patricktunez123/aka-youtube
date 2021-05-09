@@ -14,7 +14,10 @@ const videosReducer = (
     case videoActionTypes.HOME_VIDEO_SUCCESS:
       return {
         ...prevState,
-        videos: payload.videos,
+        videos:
+          prevState.activeCategory === payload.category
+            ? [...prevState.videos, ...payload.videos]
+            : payload.videos,
         nextPageToken: payload.nextPageToken,
         activeCategory: payload.category,
         laoding: false,
