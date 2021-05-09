@@ -13,7 +13,10 @@
   &__top {
     margin-bottom: 0.5rem;
     position: relative;
-    span {
+    .lazy-load-image-background {
+      width: 100%;
+    }
+    &__duration {
       position: absolute;
       bottom: 0.3rem;
       right: 0.3rem;
