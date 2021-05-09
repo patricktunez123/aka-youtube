@@ -6,7 +6,33 @@ import {
 } from "../../redux/actions/videos/videos.action";
 import "./_categoriesBar.scss";
 
-const categories = ["All", "ReactJS", "Music", "Football"];
+const categories = [
+  "All",
+  "Playlists",
+  "Music",
+  "Football",
+  "Country Music",
+  "Live",
+  "Mixes",
+  "Comedies",
+  "JavaScript",
+  "ReactJS",
+  "Conversation",
+  "PHP",
+  "Computers",
+  "Justin Bieber",
+  "Watched",
+  "Recently uploaded",
+  "Game shows",
+  "R&B",
+  "Films",
+  "Rwandan Music",
+  "African Music",
+  "Indian Music",
+  "American Music",
+  "Kids",
+  "Covid 19",
+];
 
 const CategoriesBar = () => {
   const [activeCategy, setActiveItem] = useState("All");
