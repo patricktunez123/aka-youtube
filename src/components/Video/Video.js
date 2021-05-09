@@ -24,6 +24,9 @@ const Video = ({ video }) => {
     },
   } = video;
 
+  //if the id is an object then handle it!
+  const _videoId = id?.videoId || id;
+
   useEffect(() => {
     const getVideoDetails = async () => {
       const {
@@ -31,7 +34,7 @@ const Video = ({ video }) => {
       } = await request.get("videos/", {
         params: {
           part: "contentDetails, statistics",
-          id: id,
+          id: _videoId,
           key: process.env.REACT_APP_YOUTUBE_API_KEY,
         },
       });
@@ -41,7 +44,7 @@ const Video = ({ video }) => {
     };
 
     getVideoDetails();
-  }, [id]);
+  }, [_videoId]);
 
   useEffect(() => {
     const getChannelIcon = async () => {

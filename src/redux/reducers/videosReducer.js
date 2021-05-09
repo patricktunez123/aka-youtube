@@ -5,6 +5,7 @@ const videosReducer = (
     videos: [],
     laoding: false,
     nextPageToken: null,
+    activeCategory: "All",
   },
   action
 ) => {
@@ -15,6 +16,7 @@ const videosReducer = (
         ...prevState,
         videos: payload.videos,
         nextPageToken: payload.nextPageToken,
+        activeCategory: payload.category,
         laoding: false,
       };
 

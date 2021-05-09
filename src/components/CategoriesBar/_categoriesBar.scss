@@ -19,9 +19,10 @@
     color: $text-white;
     font-weight: 500;
     cursor: pointer;
+    background: #373737;
 
     &:hover {
-      background: #373737;
+      background: #646161;
     }
     &.active {
       background: #ffffff;
