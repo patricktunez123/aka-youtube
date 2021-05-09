@@ -16,7 +16,7 @@ const Login = () => {
       const response = await auth.signInWithPopup(provider);
       dispatch(loginSuccess(response.additionalUserInfo.profile));
     } catch (error) {
-      console.log(error);
+      console.log(error.message);
     }
   };
 

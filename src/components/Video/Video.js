@@ -1,31 +1,81 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { AiFillEye } from "react-icons/ai";
-import coverImage from "../../files/images/video-cover-image.jpg";
+import moment from "moment";
+import numeral from "numeral";
+import request from "../../api";
 import "./_video.scss";
 
-const Video = () => {
+const Video = ({ video }) => {
+  const [views, setViews] = useState(null);
+  const [duration, setDuration] = useState(null);
+  const [channelIcon, setChannelIcon] = useState(null);
+
+  const seconds = moment.duration(duration).asSeconds();
+  const _duration = moment.utc(seconds * 1000).format("mm:ss");
+
+  const {
+    id,
+    snippet: {
+      channelId,
+      channelTitle,
+      title,
+      publishedAt,
+      thumbnails: { medium },
+    },
+  } = video;
+
+  useEffect(() => {
+    const getVideoDetails = async () => {
+      const {
+        data: { items },
+      } = await request.get("videos/", {
+        params: {
+          part: "contentDetails, statistics",
+          id: id,
+          key: process.env.REACT_APP_YOUTUBE_API_KEY,
+        },
+      });
+
+      setDuration(items[0].contentDetails.duration);
+      setViews(items[0].statistics.viewCount);
+    };
+
+    getVideoDetails();
+  }, [id]);
+
+  useEffect(() => {
+    const getChannelIcon = async () => {
+      const {
+        data: { items },
+      } = await request.get("channels/", {
+        params: {
+          part: "snippet",
+          id: channelId,
+          key: process.env.REACT_APP_YOUTUBE_API_KEY,
+        },
+      });
+
+      setChannelIcon(items[0].snippet.thumbnails.default);
+    };
+    getChannelIcon();
+  }, [channelId]);
+
   return (
     <div className="video">
       <div className="video__top">
-        <img src={coverImage} alt="" />
-        <span>05:45</span>
+        <img src={medium.url} alt="" />
+        <span>{_duration}</span>
       </div>
-      <div className="video__title">
-        Awesome YouTube clone!! with ReactJS, redux, firebase and react
-        bootstrap
-      </div>
+      <div className="video__title">{title}</div>
       <div className="video__details">
         <span>
-          <AiFillEye /> 5M views •{" "}
+          <AiFillEye /> {numeral(views).format("0.a")} views •
         </span>
-        <span> 5 days ago </span>
+        <span> {moment(publishedAt).fromNow()} </span>
       </div>
       <div className="video__channel">
-        <img
-          src="https://yt3.ggpht.com/ytc/AAUvwniYYUxCCF_7F5vuyY_HJkb7M6UYH5FnBQkK-Mnu5A=s48-c-k-c0x00ffffff-no-rj"
-          alt=""
-        />
-        <p>Mugabo Eric</p>
+        <img src={channelIcon?.url} alt="" />
+        <p>{channelTitle}</p>
       </div>
     </div>
   );
