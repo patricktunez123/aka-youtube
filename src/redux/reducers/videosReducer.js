@@ -1,6 +1,9 @@
-import { videoActionTypes } from "../constraints/actionTypes";
+import {
+  videoActionTypes,
+  videoByIdActionTypes,
+} from "../constraints/actionTypes";
 
-const videosReducer = (
+export const videosReducer = (
   prevState = {
     videos: [],
     laoding: false,
@@ -41,4 +44,33 @@ const videosReducer = (
   }
 };
 
-export default videosReducer;
+export const videoByIdReducer = (
+  prevState = {
+    laoding: false,
+    video: null,
+  },
+  action
+) => {
+  const { type, payload } = action;
+  switch (type) {
+    case videoByIdActionTypes.GET_VIDEO_BY_ID_REQUEST:
+      return {
+        ...prevState,
+        laoding: true,
+      };
+    case videoByIdActionTypes.GET_VIDEO_BY_ID_SUCCESS:
+      return {
+        ...prevState,
+        laoding: false,
+        video: payload,
+      };
+    case videoByIdActionTypes.GET_VIDEO_BY_ID_FAIL:
+      return {
+        ...prevState,
+        laoding: false,
+        error: payload,
+      };
+    default:
+      return prevState;
+  }
+};

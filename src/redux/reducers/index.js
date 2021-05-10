@@ -1,7 +1,11 @@
 import { combineReducers } from "redux";
 import { authReducer } from "./authReducer";
-import videosReducer from "./videosReducer";
+import { videoByIdReducer, videosReducer } from "./videosReducer";
 
-const reducers = combineReducers({ user: authReducer, videosReducer });
+const reducers = combineReducers({
+  user: authReducer,
+  videosReducer,
+  videoByIdReducer,
+});
 
 export default reducers;
