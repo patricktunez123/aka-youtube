@@ -4,6 +4,7 @@ import Layout from "./layout";
 import Login from "./screens/Login";
 import Page404 from "./screens/Page404";
 import HomeScreen from "./screens/HomeScreen";
+import WatchScreen from "./screens/WatchScreen";
 import "./_app.scss";
 
 function App() {
@@ -19,6 +20,12 @@ function App() {
         <Route path="/search" exact>
           <Layout>
             <h1>Search here</h1>
+          </Layout>
+        </Route>
+
+        <Route path="/watch/:id">
+          <Layout>
+            <WatchScreen />
           </Layout>
         </Route>
 
