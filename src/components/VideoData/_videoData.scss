@@ -17,6 +17,10 @@
       border-radius: 2.5px;
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      &.btn-grey {
+        background: $border-color;
+        color: $text-white;
+      }
       &:hover {
         color: $text-white;
       }

@@ -1,9 +1,13 @@
-import { channelDetailsActionTypes } from "../constraints/actionTypes";
+import {
+  channelDetailsActionTypes,
+  subscriptionActionTypes,
+} from "../constraints/actionTypes";
 
 export const getChannelReducer = (
   prevState = {
     loading: false,
     channel: {},
+    subscriptionStatus: null,
   },
   action
 ) => {
@@ -27,6 +31,12 @@ export const getChannelReducer = (
         loading: false,
         channel: null,
         error: payload,
+      };
+
+    case subscriptionActionTypes.SET_SUBSCRIPTION_STATUS:
+      return {
+        ...prevState,
+        subscriptionStatus: payload,
       };
 
     default:

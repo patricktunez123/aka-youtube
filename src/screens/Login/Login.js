@@ -25,7 +25,17 @@ const Login = () => {
       <div className="login__container">
         <img src="http://pngimg.com/uploads/youtube/youtube_PNG2.png" alt="" />
         <button onClick={() => handleLogin()}>Login with Gmail</button>
-        <p>This app was created by Patrick with ReactJS, Redux and Firebase</p>
+        <p>
+          This app was created by
+          <a
+            href="https://www.linkedin.com/in/patrick-tunezerwane-0a901ba8/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Patrick
+          </a>
+          using ReactJS, Redux and Firebase
+        </p>
       </div>
     </div>
   );

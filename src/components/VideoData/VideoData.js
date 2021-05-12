@@ -4,15 +4,22 @@ import numeral from "numeral";
 import { MdThumbUp, MdThumbDown } from "react-icons/md";
 import ShowMore from "react-show-more-text";
 import { useDispatch, useSelector } from "react-redux";
-import { getChannelDetails } from "../../redux/actions/channel/channel.action";
+import {
+  getChannelDetails,
+  setSubscription,
+} from "../../redux/actions/channel/channel.action";
 import "./_videoData.scss";
 
 const VideoData = ({ video, videoId }) => {
   const dispath = useDispatch();
   const channel = useSelector((state) => state.getChannelReducer.channel);
+  const subscriptionStatus = useSelector(
+    (state) => state.getChannelReducer.subscriptionStatus
+  );
 
   useEffect(() => {
     dispath(getChannelDetails(video?.snippet?.channelId));
+    dispath(setSubscription(video?.snippet?.channelId));
   }, [dispath, video?.snippet?.channelId]);
 
   return (
@@ -53,7 +60,11 @@ const VideoData = ({ video, videoId }) => {
           </div>
         </div>
 
-        <button className="btn border-0 p-2 m-2">Subscribe</button>
+        <button
+          className={`btn border-0 p-2 m-2 ${subscriptionStatus && "btn-grey"}`}
+        >
+          {subscriptionStatus ? "Subscribed" : "Subscribe"}
+        </button>
       </div>
       <div className="videoData__description">
         <ShowMore
