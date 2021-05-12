@@ -2,22 +2,44 @@ import { authActionTypes } from "../constraints/actionTypes";
 
 const initialState = {
   loading: false,
-  profile: {},
+  accessToken: sessionStorage.getItem("aka-youtube-accessToken")
+    ? sessionStorage.getItem("aka-youtube-accessToken")
+    : null,
+  user: sessionStorage.getItem("aka-youtube-userProfile")
+    ? JSON.parse(sessionStorage.getItem("aka-youtube-userProfile"))
+    : null,
 };
 
-export const authReducer = (state = initialState, { type, payload }) => {
+export const authReducer = (prevState = initialState, { type, payload }) => {
   switch (type) {
     case authActionTypes.LOGIN_REQUEST:
       return {
-        ...state,
+        ...prevState,
         loading: true,
-        profile: null,
       };
     case authActionTypes.LOGIN_SUCCESS:
       return {
-        ...state,
+        ...prevState,
         loading: false,
-        profile: payload,
+        accessToken: payload,
+      };
+    case authActionTypes.LOGIN_FAIL:
+      return {
+        ...prevState,
+        loading: false,
+        error: payload,
+      };
+    case authActionTypes.LOAD_PROFILE:
+      return {
+        ...prevState,
+        loading: false,
+        user: payload,
+      };
+    case authActionTypes.LOGOUT:
+      return {
+        ...prevState,
+        user: null,
+        accessToken: null,
       };
     default:
       return null;

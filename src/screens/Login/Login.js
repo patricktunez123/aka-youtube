@@ -1,30 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import firebase from "firebase/app";
-import auth from "../../config/firebase";
-import { loginSuccess } from "../../redux/actions/auth/auth";
+import { useHistory } from "react-router";
+import { login } from "../../redux/actions/auth/auth";
 import "./_login.scss";
 
 const Login = () => {
-  const profile = useSelector((state) => state);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const handleLogin = async () => {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
-      const response = await auth.signInWithPopup(provider);
-      dispatch(loginSuccess(response.additionalUserInfo.profile));
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleLogin = () => {
+    dispatch(login());
   };
 
-  useEffect(() => {
-    handleLogin();
-  });
+  const history = useHistory();
 
-  console.log("this is the profile", profile);
+  useEffect(() => {
+    if (state?.user?.accessToken !== null) {
+      history.push("/");
+    }
+  });
 
   return (
     <div className="login">
