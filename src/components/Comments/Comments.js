@@ -1,10 +1,24 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import SingleComment from "../SingleComment";
+import { getCommentsById } from "../../redux/actions/comments/comments.action";
 import profile from "../../files/images/profile.png";
 import "./_comments.scss";
 
-const Comments = () => {
+const Comments = ({ videoId }) => {
   const handleComment = () => {};
+  const dispatch = useDispatch();
+  const comments = useSelector((state) => state.commentsList.comments);
+
+  // grab the top level comments
+  const _comments = comments?.items.map(
+    (comment) => comment.snippet.topLevelComment.snippet
+  );
+
+  useEffect(() => {
+    dispatch(getCommentsById(videoId));
+  }, [dispatch, videoId]);
+
   return (
     <div className="comments">
       <p>122222 comments</p>
@@ -20,8 +34,8 @@ const Comments = () => {
         </form>
       </div>
       <div className="comments__list">
-        {[...Array(15)].map(() => (
-          <SingleComment />
+        {_comments?.map((comment, index) => (
+          <SingleComment comment={comment} key={index} />
         ))}
       </div>
     </div>

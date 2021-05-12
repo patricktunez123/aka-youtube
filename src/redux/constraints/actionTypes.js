@@ -27,3 +27,9 @@ export const channelDetailsActionTypes = {
 export const subscriptionActionTypes = {
   SET_SUBSCRIPTION_STATUS: "SET_SUBSCRIPTION_STATUS",
 };
+
+export const commentActionTypes = {
+  COMMENT_LIST_SUCCESS: "COMMENT_LIST_SUCCESS",
+  COMMENT_LIST_FAIL: "COMMENT_LIST_FAIL",
+  COMMENT_LIST_REQUEST: "COMMENT_LIST_REQUEST",
+};
