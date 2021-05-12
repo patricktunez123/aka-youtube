@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SingleComment from "../SingleComment";
 import { getCommentsById } from "../../redux/actions/comments/comments.action";
+import { numberWithCommas } from "../../helpers/formatNumbers";
 import profile from "../../files/images/profile.png";
 import "./_comments.scss";
 
-const Comments = ({ videoId }) => {
+const Comments = ({ videoId, allComments }) => {
   const handleComment = () => {};
   const dispatch = useDispatch();
   const comments = useSelector((state) => state.commentsList.comments);
@@ -21,7 +22,7 @@ const Comments = ({ videoId }) => {
 
   return (
     <div className="comments">
-      <p>122222 comments</p>
+      <p>{numberWithCommas(allComments)} comments</p>
       <div className="comments__form d-flex w-100 my-2">
         <img className="rounded-circle mr-3" src={profile} alt="" />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">
