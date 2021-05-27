@@ -22,7 +22,7 @@ const Comments = ({ videoId, allComments }) => {
 
   return (
     <div className="comments">
-      <p>{numberWithCommas(allComments)} comments</p>
+      <p>{allComments && numberWithCommas(allComments)} comments</p>
       <div className="comments__form d-flex w-100 my-2">
         <img className="rounded-circle mr-3" src={profile} alt="" />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">
