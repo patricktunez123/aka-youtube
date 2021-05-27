@@ -1,14 +1,25 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import SingleComment from "../SingleComment";
-import { getCommentsById } from "../../redux/actions/comments/comments.action";
+import {
+  addComment,
+  getCommentsById,
+} from "../../redux/actions/comments/comments.action";
 import { numberWithCommas } from "../../helpers/formatNumbers";
 import profile from "../../files/images/profile.png";
 import "./_comments.scss";
 
 const Comments = ({ videoId, allComments }) => {
-  const handleComment = () => {};
   const dispatch = useDispatch();
+  const [text, setText] = useState("");
+
+  const handleComment = (event) => {
+    event.preventDefault();
+    if (text.length === 0) return;
+    dispatch(addComment(videoId, text));
+    setText("");
+  };
+
   const comments = useSelector((state) => state.commentsList.comments);
 
   // grab the top level comments
@@ -30,6 +41,8 @@ const Comments = ({ videoId, allComments }) => {
             type="text"
             placeholder="Add a public comment..."
             className="flex-grow-1"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
           />
           <button className="border-0 p-2">Comment</button>
         </form>

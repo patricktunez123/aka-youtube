@@ -18,8 +18,8 @@ export const login = () => async (dispatch) => {
       picture: response.additionalUserInfo.profile.picture,
     };
 
-    sessionStorage.setItem("aka-youtube-accessToken", accessToken);
-    sessionStorage.setItem("aka-youtube-userProfile", JSON.stringify(profile));
+    localStorage.setItem("aka-youtube-accessToken", accessToken);
+    localStorage.setItem("aka-youtube-userProfile", JSON.stringify(profile));
 
     dispatch({
       type: authActionTypes.LOGIN_SUCCESS,
@@ -45,6 +45,6 @@ export const logOut = () => (dispatch) => {
     type: authActionTypes.LOGOUT,
   });
 
-  sessionStorage.removeItem("aka-youtube-accessToken");
-  sessionStorage.removeItem("aka-youtube-userProfile");
+  localStorage.removeItem("aka-youtube-accessToken");
+  localStorage.removeItem("aka-youtube-userProfile");
 };

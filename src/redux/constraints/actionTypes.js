@@ -33,3 +33,8 @@ export const commentActionTypes = {
   COMMENT_LIST_FAIL: "COMMENT_LIST_FAIL",
   COMMENT_LIST_REQUEST: "COMMENT_LIST_REQUEST",
 };
+
+export const addCcommentActionTypes = {
+  ADD_COMMENT_SUCCESS: "ADD_COMMENT_SUCCESS",
+  ADD_COMMENT_FAIL: "ADD_COMMENT_FAIL",
+};
