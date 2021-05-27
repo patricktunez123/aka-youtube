@@ -3,6 +3,7 @@ import { AiFillEye } from "react-icons/ai";
 import moment from "moment";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
+import { useHistory } from "react-router-dom";
 import request from "../../api";
 import "./_video.scss";
 
@@ -64,8 +65,13 @@ const Video = ({ video }) => {
     getChannelIcon();
   }, [channelId]);
 
+  const history = useHistory();
+  const goToWatchScreen = () => {
+    history.push(`/watch/${_videoId}`);
+  };
+
   return (
-    <div className="video">
+    <div onClick={goToWatchScreen} className="video">
       <div className="video__top">
         <LazyLoadImage src={medium.url} effect="blur" />
         <span className="video__top__duration">{_duration}</span>

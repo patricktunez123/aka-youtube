@@ -1,37 +1,41 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import firebase from "firebase/app";
-import auth from "../../config/firebase";
-import { loginSuccess } from "../../redux/actions/auth/auth";
+import { useHistory } from "react-router";
+import { login } from "../../redux/actions/auth/auth";
 import "./_login.scss";
 
 const Login = () => {
-  const profile = useSelector((state) => state);
+  const state = useSelector((state) => state);
   const dispatch = useDispatch();
 
-  const handleLogin = async () => {
-    try {
-      const provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope("https://www.googleapis.com/auth/youtube.force-ssl");
-      const response = await auth.signInWithPopup(provider);
-      dispatch(loginSuccess(response.additionalUserInfo.profile));
-    } catch (error) {
-      console.log(error.message);
-    }
+  const handleLogin = () => {
+    dispatch(login());
   };
 
-  useEffect(() => {
-    handleLogin();
-  });
+  const history = useHistory();
 
-  console.log("this is the profile", profile);
+  useEffect(() => {
+    if (state?.user?.accessToken !== null) {
+      history.push("/");
+    }
+  });
 
   return (
     <div className="login">
       <div className="login__container">
         <img src="http://pngimg.com/uploads/youtube/youtube_PNG2.png" alt="" />
         <button onClick={() => handleLogin()}>Login with Gmail</button>
-        <p>This app was created by Patrick with ReactJS, Redux and Firebase</p>
+        <p>
+          This app was created by
+          <a
+            href="https://www.linkedin.com/in/patrick-tunezerwane-0a901ba8/"
+            target="_blank"
+            rel="noreferrer"
+          >
+            Patrick
+          </a>
+          using ReactJS, Redux and Firebase
+        </p>
       </div>
     </div>
   );

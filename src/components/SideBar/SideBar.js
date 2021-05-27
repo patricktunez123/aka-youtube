@@ -1,49 +1,19 @@
 import React, { useState } from "react";
-import {
-  MdSubscriptions,
-  MdExitToApp,
-  MdThumbUp,
-  MdHistory,
-  MdLibraryBooks,
-  MdHome,
-  MdSentimentDissatisfied,
-} from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { logOut } from "../../redux/actions/auth/auth";
+import { menus } from "../../data/menus";
 import "./_sideBar.scss";
 
-const menus = [
-  {
-    name: "Home",
-    icon: <MdHome size={23} />,
-  },
-  {
-    name: "Subscription",
-    icon: <MdSubscriptions size={23} />,
-  },
-  {
-    name: "Liked videos",
-    icon: <MdThumbUp size={23} />,
-  },
-  {
-    name: "History",
-    icon: <MdHistory size={23} />,
-  },
-  {
-    name: "Library",
-    icon: <MdLibraryBooks size={23} />,
-  },
-  {
-    name: "IDK!",
-    icon: <MdSentimentDissatisfied size={23} />,
-  },
-  {
-    name: "Logout",
-    icon: <MdExitToApp size={23} />,
-  },
-];
 const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
   const [activeMenu, setActiveMenu] = useState("Home");
+
   const handleClick = (value) => {
     setActiveMenu(value);
+  };
+
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(logOut());
   };
   return (
     <nav
@@ -55,7 +25,9 @@ const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
           {menu.name === "Logout" ? <hr /> : null}
           <li
             className={activeMenu === menu.name ? "active" : ""}
-            onClick={() => handleClick(menu.name)}
+            onClick={() =>
+              menu.name === "Logout" ? handleLogout() : handleClick(menu.name)
+            }
           >
             {menu.icon}
             <span>{menu.name}</span>

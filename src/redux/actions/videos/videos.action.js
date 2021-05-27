@@ -1,5 +1,9 @@
 import req from "../../../api";
-import { videoActionTypes } from "../../constraints/actionTypes";
+import {
+  videoActionTypes,
+  videoByIdActionTypes,
+  relatedVideosActionTypes,
+} from "../../constraints/actionTypes";
 
 export const getVideos = () => async (dispatch, getState) => {
   dispatch({
@@ -63,6 +67,60 @@ export const getVideosByCategory = (keyword) => async (dispatch, getState) => {
     dispatch({
       type: videoActionTypes.HOME_VIDEO_FAIL,
       payload: error.message,
+    });
+  }
+};
+
+export const getVideoById = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: videoByIdActionTypes.GET_VIDEO_BY_ID_REQUEST,
+    });
+
+    const { data } = await req.get("videos/", {
+      params: {
+        part: "snippet, statistics",
+        id: id,
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+    });
+
+    dispatch({
+      type: videoByIdActionTypes.GET_VIDEO_BY_ID_SUCCESS,
+      payload: data.items[0],
+    });
+  } catch (error) {
+    dispatch({
+      type: videoByIdActionTypes.GET_VIDEO_BY_ID_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getRelatedVideos = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: relatedVideosActionTypes.RELATED_VIDEOS_REQUEST,
+    });
+
+    const { data } = await req.get("search", {
+      params: {
+        part: "snippet",
+        relatedToVideoId: id,
+        maxResults: 15,
+        type: "video",
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+    });
+
+    dispatch({
+      type: relatedVideosActionTypes.RELATED_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: relatedVideosActionTypes.RELATED_VIDEOS_FAIL,
+      payload: error.response.data.message,
     });
   }
 };

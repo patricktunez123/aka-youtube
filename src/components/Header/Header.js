@@ -2,6 +2,7 @@ import React from "react";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
 import { MdNotifications, MdApps, MdMovieCreation } from "react-icons/md";
+import { Link } from "react-router-dom";
 import "./_header.scss";
 import profile from "../../files/images/profile.png";
 
@@ -13,11 +14,13 @@ const Header = ({ handleToggleSideBar }) => {
         size={26}
         onClick={() => handleToggleSideBar()}
       />
-      <img
-        src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
-        alt=""
-        className="header__logo"
-      />
+      <Link to="/">
+        <img
+          src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
+          alt=""
+          className="header__logo"
+        />
+      </Link>
       <form>
         <input placeholder="Search" type="text" />
         <button type="submit">
