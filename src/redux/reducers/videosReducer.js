@@ -2,6 +2,7 @@ import {
   videoActionTypes,
   videoByIdActionTypes,
   relatedVideosActionTypes,
+  searchVideosActionTypes,
 } from "../constraints/actionTypes";
 
 export const videosReducer = (
@@ -98,6 +99,39 @@ export const relatedVideosReducer = (
         videos: payload,
       };
     case relatedVideosActionTypes.RELATED_VIDEOS_FAIL:
+      return {
+        ...prevState,
+        loading: false,
+        error: payload,
+      };
+    default:
+      return prevState;
+  }
+};
+
+export const searchVideosReducer = (
+  prevState = {
+    loading: false,
+    error: "",
+    videos: [],
+  },
+  action
+) => {
+  const { type, payload } = action;
+
+  switch (type) {
+    case searchVideosActionTypes.SEARCH_VIDEOS_REQUEST:
+      return {
+        ...prevState,
+        loading: true,
+      };
+    case searchVideosActionTypes.SEARCH_VIDEOS_SUCCESS:
+      return {
+        ...prevState,
+        loading: false,
+        videos: payload,
+      };
+    case searchVideosActionTypes.SEARCH_VIDEOS_FAIL:
       return {
         ...prevState,
         loading: false,

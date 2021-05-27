@@ -8,19 +8,20 @@ import { useHistory } from "react-router-dom";
 import request from "../../api";
 import "./_videoSideBar.scss";
 
-const VideoSideBar = ({ video }) => {
+const VideoSideBar = ({ video, SearchScreen }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
-  // const [channelIcon, setChannelIcon] = useState(null);
+  const [channelIcon, setChannelIcon] = useState(null);
 
   const history = useHistory();
 
   const {
     id,
     snippet: {
-      // channelId,
+      channelId,
       channelTitle,
       title,
+      description,
       publishedAt,
       thumbnails: { medium },
     },
@@ -48,55 +49,67 @@ const VideoSideBar = ({ video }) => {
     getVideoDetails();
   }, [_videoId]);
 
-  // useEffect(() => {
-  //   const getChannelIcon = async () => {
-  //     const {
-  //       data: { items },
-  //     } = await request.get("channels/", {
-  //       params: {
-  //         part: "snippet",
-  //         id: channelId,
-  //         key: process.env.REACT_APP_YOUTUBE_API_KEY,
-  //       },
-  //     });
+  useEffect(() => {
+    const getChannelIcon = async () => {
+      const {
+        data: { items },
+      } = await request.get("channels/", {
+        params: {
+          part: "snippet",
+          id: channelId,
+          key: process.env.REACT_APP_YOUTUBE_API_KEY,
+        },
+      });
 
-  //     setChannelIcon(items[0].snippet.thumbnails.default);
-  //   };
-  //   getChannelIcon();
-  // }, [channelId]);
+      setChannelIcon(items[0].snippet.thumbnails.default);
+    };
+    getChannelIcon();
+  }, [channelId]);
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
+  const isVideo = id.kind === "youtube#video";
 
   const handleClick = () => {
-    history.push(`/watch/${_videoId}`);
+    isVideo
+      ? history.push(`/watch/${_videoId}`)
+      : history.push(`/channel/${channelId}`);
   };
+
+  const thumbnail = !isVideo && "video--sideBar__thumbnail-channel";
 
   return (
     <Row
       className="video--sideBar align-items-center m-1 py-2"
       onClick={handleClick}
     >
-      <Col xs={6} md={6} className="video--sideBar__left">
+      <Col xs={6} md={SearchScreen ? 4 : 6} className="video--sideBar__left">
         <LazyLoadImage
           src={medium.url}
           effect="blur"
-          className="video--sideBar__thumbnail"
+          className={`video--sideBar__thumbnail ${thumbnail}`}
           wrapperClassName="video--sideBar__thumbnail--wrapper"
         />
-        <span className="video--sideBar__duration">{_duration}</span>
+        {isVideo && (
+          <span className="video--sideBar__duration">{_duration}</span>
+        )}
       </Col>
-      <Col xs={6} md={6} className="video--sideBar__right p-0">
+      <Col
+        xs={6}
+        md={SearchScreen ? 8 : 6}
+        className="video--sideBar__right p-0"
+      >
         <p className="video--sideBar__title mb-1">{title}</p>
-        <div className="video--sideBar__details">
-          <AiFillEye /> {numeral(views).format("0.a")} views •{" "}
-          {moment(publishedAt).fromNow()}
-        </div>
+        {isVideo && (
+          <div className="video--sideBar__details">
+            <AiFillEye /> {numeral(views).format("0.a")} views •{" "}
+            {moment(publishedAt).fromNow()}
+          </div>
+        )}
+        {isVideo && SearchScreen && <p className="mt-1">{description}</p>}
+
         <div className="video--sideBar__channel d-flex align-items-center my-1">
-          {/* <LazyLoadImage
-            src={profile}
-            effect="blur"
-          /> */}
+          {isVideo && <LazyLoadImage src={channelIcon?.url} effect="blur" />}
           <p className="mb-0">{channelTitle}</p>
         </div>
       </Col>

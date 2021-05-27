@@ -6,6 +6,7 @@ import Login from "./screens/Login";
 import Page404 from "./screens/Page404";
 import HomeScreen from "./screens/HomeScreen";
 import WatchScreen from "./screens/WatchScreen";
+import SearchScreen from "./screens/SearchScreen";
 import "./_app.scss";
 
 function App() {
@@ -29,15 +30,20 @@ function App() {
         </Layout>
       </Route>
 
-      <Route path="/search" exact>
+      <Route path="/search/:query" exact>
         <Layout>
-          <h1>Search here</h1>
+          <SearchScreen />
         </Layout>
       </Route>
 
       <Route path="/watch/:id">
         <Layout>
           <WatchScreen />
+        </Layout>
+      </Route>
+      <Route path="/channel/:id">
+        <Layout>
+          <div>thsi isn t cnalle</div>
         </Layout>
       </Route>
 
