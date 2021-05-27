@@ -2,6 +2,7 @@ import req from "../../../api";
 import {
   videoActionTypes,
   videoByIdActionTypes,
+  relatedVideosActionTypes,
 } from "../../constraints/actionTypes";
 
 export const getVideos = () => async (dispatch, getState) => {
@@ -92,6 +93,34 @@ export const getVideoById = (id) => async (dispatch) => {
     dispatch({
       type: videoByIdActionTypes.GET_VIDEO_BY_ID_FAIL,
       payload: error.message,
+    });
+  }
+};
+
+export const getRelatedVideos = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: relatedVideosActionTypes.RELATED_VIDEOS_REQUEST,
+    });
+
+    const { data } = await req.get("search", {
+      params: {
+        part: "snippet",
+        relatedToVideoId: id,
+        maxResults: 15,
+        type: "video",
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+    });
+
+    dispatch({
+      type: relatedVideosActionTypes.RELATED_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: relatedVideosActionTypes.RELATED_VIDEOS_FAIL,
+      payload: error.response.data.message,
     });
   }
 };

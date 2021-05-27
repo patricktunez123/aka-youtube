@@ -1,19 +1,27 @@
 import React, { useEffect } from "react";
 import { Col, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import VideoSideBar from "../../components/VideoSideBar";
 import VideoData from "../../components/VideoData";
 import Comments from "../../components/Comments";
-import { getVideoById } from "../../redux/actions/videos/videos.action";
+import {
+  getVideoById,
+  getRelatedVideos,
+} from "../../redux/actions/videos/videos.action";
 import "./_watchScreen.scss";
 
 const WatchScreen = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const { videos, loading: relatedVideoLoading } = useSelector(
+    (state) => state.relatedVideos
+  );
 
   useEffect(() => {
     dispatch(getVideoById(id));
+    dispatch(getRelatedVideos(id));
   }, [id, dispatch]);
 
   const { video, loading } = useSelector((state) => state.videoByIdReducer);
@@ -39,9 +47,17 @@ const WatchScreen = () => {
         <Comments videoId={id} allComments={video?.statistics?.commentCount} />
       </Col>
       <Col lg={4}>
-        {[...Array(10)].map(() => (
-          <VideoSideBar />
-        ))}
+        {!relatedVideoLoading ? (
+          videos
+            ?.filter((video) => video.snippet)
+            .map((video) => (
+              <VideoSideBar video={video} key={video.id.videoId} />
+            ))
+        ) : (
+          <SkeletonTheme color="#282424" highlightColor="#202020">
+            <Skeleton width="100%" height="130px" count={15} />
+          </SkeletonTheme>
+        )}
       </Col>
     </Row>
   );

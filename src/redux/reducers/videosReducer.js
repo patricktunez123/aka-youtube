@@ -1,6 +1,7 @@
 import {
   videoActionTypes,
   videoByIdActionTypes,
+  relatedVideosActionTypes,
 } from "../constraints/actionTypes";
 
 export const videosReducer = (
@@ -68,6 +69,38 @@ export const videoByIdReducer = (
       return {
         ...prevState,
         laoding: false,
+        error: payload,
+      };
+    default:
+      return prevState;
+  }
+};
+
+export const relatedVideosReducer = (
+  prevState = {
+    loading: false,
+    error: "",
+    videos: [],
+  },
+  action
+) => {
+  const { type, payload } = action;
+  switch (type) {
+    case relatedVideosActionTypes.RELATED_VIDEOS_REQUEST:
+      return {
+        ...prevState,
+        loading: true,
+      };
+    case relatedVideosActionTypes.RELATED_VIDEOS_SUCCESS:
+      return {
+        ...prevState,
+        loading: false,
+        videos: payload,
+      };
+    case relatedVideosActionTypes.RELATED_VIDEOS_FAIL:
+      return {
+        ...prevState,
+        loading: false,
         error: payload,
       };
     default:
