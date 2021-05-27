@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+## DEMO
+
+Click [here](https://aka-youtube.vercel.app/) to view the demo of this app
+
+## Technologies used
+
+- ReactJS
+- Redux
+- Firebase
+- Bootstrap
+
 ## Available Scripts
 
 In the project directory, you can run:
