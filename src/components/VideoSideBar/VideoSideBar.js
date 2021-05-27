@@ -11,14 +11,14 @@ import "./_videoSideBar.scss";
 const VideoSideBar = ({ video }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
-  const [channelIcon, setChannelIcon] = useState(null);
+  // const [channelIcon, setChannelIcon] = useState(null);
 
   const history = useHistory();
 
   const {
     id,
     snippet: {
-      channelId,
+      // channelId,
       channelTitle,
       title,
       publishedAt,
@@ -48,22 +48,22 @@ const VideoSideBar = ({ video }) => {
     getVideoDetails();
   }, [_videoId]);
 
-  useEffect(() => {
-    const getChannelIcon = async () => {
-      const {
-        data: { items },
-      } = await request.get("channels/", {
-        params: {
-          part: "snippet",
-          id: channelId,
-          key: process.env.REACT_APP_YOUTUBE_API_KEY,
-        },
-      });
+  // useEffect(() => {
+  //   const getChannelIcon = async () => {
+  //     const {
+  //       data: { items },
+  //     } = await request.get("channels/", {
+  //       params: {
+  //         part: "snippet",
+  //         id: channelId,
+  //         key: process.env.REACT_APP_YOUTUBE_API_KEY,
+  //       },
+  //     });
 
-      setChannelIcon(items[0].snippet.thumbnails.default);
-    };
-    getChannelIcon();
-  }, [channelId]);
+  //     setChannelIcon(items[0].snippet.thumbnails.default);
+  //   };
+  //   getChannelIcon();
+  // }, [channelId]);
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
