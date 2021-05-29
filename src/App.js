@@ -8,6 +8,7 @@ import HomeScreen from "./screens/HomeScreen";
 import WatchScreen from "./screens/WatchScreen";
 import SearchScreen from "./screens/SearchScreen";
 import Subscriptions from "./screens/Subscriptions";
+import ChannelScreen from "./screens/ChannelScreen";
 import "./_app.scss";
 
 function App() {
@@ -45,9 +46,9 @@ function App() {
           <Subscriptions />
         </Layout>
       </Route>
-      <Route path="/channel/:id">
+      <Route path="/channel/:channelId">
         <Layout>
-          <div>thsi isn t cnalle</div>
+          <ChannelScreen />
         </Layout>
       </Route>
 

@@ -24,8 +24,8 @@ const VideoSideBar = ({ video, SearchScreen, subScreen }) => {
       description,
       publishedAt,
       thumbnails: { medium },
+      resourceId,
     },
-    resourceId,
   } = video;
 
   //if the id is an object then handle it!
