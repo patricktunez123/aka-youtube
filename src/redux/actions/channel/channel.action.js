@@ -40,7 +40,7 @@ export const setSubscription = (id) => async (dispatch, getState) => {
         key: process.env.REACT_APP_YOUTUBE_API_KEY,
       },
       headers: {
-        Authorization: `Bearer${getState().auth.accessToken}`,
+        Authorization: `Bearer ${getState().auth.accessToken}`,
       },
     });
 

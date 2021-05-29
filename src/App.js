@@ -7,6 +7,7 @@ import Page404 from "./screens/Page404";
 import HomeScreen from "./screens/HomeScreen";
 import WatchScreen from "./screens/WatchScreen";
 import SearchScreen from "./screens/SearchScreen";
+import Subscriptions from "./screens/Subscriptions";
 import "./_app.scss";
 
 function App() {
@@ -40,7 +41,9 @@ function App() {
         </Layout>
       </Route>
       <Route path="/feed/subscriptions">
-        <Layout>subdd</Layout>
+        <Layout>
+          <Subscriptions />
+        </Layout>
       </Route>
       <Route path="/channel/:id">
         <Layout>

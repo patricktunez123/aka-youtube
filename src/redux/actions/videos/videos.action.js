@@ -4,6 +4,7 @@ import {
   videoByIdActionTypes,
   relatedVideosActionTypes,
   searchVideosActionTypes,
+  subscribeVideosActionTypes,
 } from "../../constraints/actionTypes";
 
 export const getVideos = () => async (dispatch, getState) => {
@@ -149,6 +150,35 @@ export const getSearchedVideos = (keyword) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: searchVideosActionTypes.SEARCH_VIDEOS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getSubscribeVideos = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_REQUEST,
+    });
+
+    const { data } = await req.get("subscriptions", {
+      params: {
+        part: "snippet,contentDetails",
+        mine: true,
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+
+    dispatch({
+      type: subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_FAIL,
       payload: error.message,
     });
   }

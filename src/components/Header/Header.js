@@ -14,7 +14,7 @@ const Header = ({ handleToggleSideBar }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (input.length === 0) return;
-    history.push(`search/${input}`);
+    history.push(`/search/${input}`);
   };
 
   return (

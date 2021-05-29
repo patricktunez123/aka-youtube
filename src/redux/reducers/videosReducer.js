@@ -3,6 +3,7 @@ import {
   videoByIdActionTypes,
   relatedVideosActionTypes,
   searchVideosActionTypes,
+  subscribeVideosActionTypes,
 } from "../constraints/actionTypes";
 
 export const videosReducer = (
@@ -132,6 +133,39 @@ export const searchVideosReducer = (
         videos: payload,
       };
     case searchVideosActionTypes.SEARCH_VIDEOS_FAIL:
+      return {
+        ...prevState,
+        loading: false,
+        error: payload,
+      };
+    default:
+      return prevState;
+  }
+};
+
+export const subscriptionsVideosReducer = (
+  prevState = {
+    loading: false,
+    error: null,
+    videos: [],
+  },
+  action
+) => {
+  const { type, payload } = action;
+  switch (type) {
+    case subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_REQUEST:
+      return {
+        ...prevState,
+        loading: true,
+      };
+    case subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_SUCCESS:
+      return {
+        ...prevState,
+        loading: false,
+        videos: payload,
+      };
+
+    case subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_FAIL:
       return {
         ...prevState,
         loading: false,

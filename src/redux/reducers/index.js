@@ -5,6 +5,7 @@ import {
   videosReducer,
   relatedVideosReducer,
   searchVideosReducer,
+  subscriptionsVideosReducer,
 } from "./videosReducer";
 import { getChannelReducer } from "./channelReducer";
 import { commentsReducer } from "./commentsReducer";
@@ -17,6 +18,7 @@ const reducers = combineReducers({
   commentsList: commentsReducer,
   relatedVideos: relatedVideosReducer,
   searchVideos: searchVideosReducer,
+  subscriptionsVideos: subscriptionsVideosReducer,
 });
 
 export default reducers;

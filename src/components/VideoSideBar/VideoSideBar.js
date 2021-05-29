@@ -8,7 +8,7 @@ import { useHistory } from "react-router-dom";
 import request from "../../api";
 import "./_videoSideBar.scss";
 
-const VideoSideBar = ({ video, SearchScreen }) => {
+const VideoSideBar = ({ video, SearchScreen, subScreen }) => {
   const [views, setViews] = useState(null);
   const [duration, setDuration] = useState(null);
   const [channelIcon, setChannelIcon] = useState(null);
@@ -25,10 +25,12 @@ const VideoSideBar = ({ video, SearchScreen }) => {
       publishedAt,
       thumbnails: { medium },
     },
+    resourceId,
   } = video;
 
   //if the id is an object then handle it!
   const _videoId = id?.videoId;
+  const isVideo = !(id.kind === "youtube#channel" || subScreen);
 
   useEffect(() => {
     const getVideoDetails = async () => {
@@ -45,9 +47,8 @@ const VideoSideBar = ({ video, SearchScreen }) => {
       setDuration(items[0].contentDetails.duration);
       setViews(items[0].statistics.viewCount);
     };
-
-    getVideoDetails();
-  }, [_videoId]);
+    if (isVideo) getVideoDetails();
+  }, [_videoId, isVideo]);
 
   useEffect(() => {
     const getChannelIcon = async () => {
@@ -68,12 +69,12 @@ const VideoSideBar = ({ video, SearchScreen }) => {
 
   const seconds = moment.duration(duration).asSeconds();
   const _duration = moment.utc(seconds * 1000).format("mm:ss");
-  const isVideo = id.kind === "youtube#video";
 
+  const _channelId = resourceId?.channelId || channelId;
   const handleClick = () => {
     isVideo
       ? history.push(`/watch/${_videoId}`)
-      : history.push(`/channel/${channelId}`);
+      : history.push(`/channel/${_channelId}`);
   };
 
   const thumbnail = !isVideo && "video--sideBar__thumbnail-channel";
@@ -83,7 +84,11 @@ const VideoSideBar = ({ video, SearchScreen }) => {
       className="video--sideBar align-items-center m-1 py-2"
       onClick={handleClick}
     >
-      <Col xs={6} md={SearchScreen ? 4 : 6} className="video--sideBar__left">
+      <Col
+        xs={6}
+        md={SearchScreen || subScreen ? 4 : 6}
+        className="video--sideBar__left"
+      >
         <LazyLoadImage
           src={medium.url}
           effect="blur"
@@ -96,7 +101,7 @@ const VideoSideBar = ({ video, SearchScreen }) => {
       </Col>
       <Col
         xs={6}
-        md={SearchScreen ? 8 : 6}
+        md={SearchScreen || subScreen ? 8 : 6}
         className="video--sideBar__right p-0"
       >
         <p className="video--sideBar__title mb-1">{title}</p>
@@ -106,12 +111,17 @@ const VideoSideBar = ({ video, SearchScreen }) => {
             {moment(publishedAt).fromNow()}
           </div>
         )}
-        {isVideo && SearchScreen && <p className="mt-1">{description}</p>}
+        {(SearchScreen || subScreen) && (
+          <p className="mt-1 video--sideBar__desc">{description}</p>
+        )}
 
         <div className="video--sideBar__channel d-flex align-items-center my-1">
           {isVideo && <LazyLoadImage src={channelIcon?.url} effect="blur" />}
           <p className="mb-0">{channelTitle}</p>
         </div>
+        {subScreen && (
+          <p className="mt-2">{video.contentDetails.totalItemCount} videos</p>
+        )}
       </Col>
     </Row>
   );
