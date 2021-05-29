@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Col, Container } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Helmet } from "react-helmet";
 import {
   getVideos,
   getVideosByCategory,
@@ -30,6 +31,9 @@ const HomeScreen = () => {
 
   return (
     <Container>
+      <Helmet>
+        <title>Aka YouTube!!</title>
+      </Helmet>
       <CategoriesBar />
       <InfiniteScroll
         dataLength={videos.length} //This is important field to render the next data

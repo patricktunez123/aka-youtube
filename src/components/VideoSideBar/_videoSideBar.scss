@@ -45,7 +45,7 @@
     @include for-long-titles(2);
   }
   &__desc {
-    @include for-long-titles(2);
+    @include for-long-titles(6);
     font-size: 0.9rem;
   }
 
@@ -83,7 +83,7 @@
     }
 
     &__desc {
-      display: none;
+      @include for-long-titles(3);
     }
 
     &__title {

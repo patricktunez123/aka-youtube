@@ -49,7 +49,7 @@ export const addComment = (id, text) => async (dispatch, getState) => {
         key: process.env.REACT_APP_YOUTUBE_API_KEY,
       },
       headers: {
-        Authorization: `Bearer${getState().user?.accessToken}`,
+        Authorization: `Bearer ${getState().auth?.accessToken}`,
       },
     });
     console.log(data);

@@ -6,3 +6,8 @@
   background: $black-secondary;
   margin-bottom: 2rem;
 }
+@media (max-width: $breakpoint-small) {
+  .watch--screen__player {
+    height: 35vh;
+  }
+}

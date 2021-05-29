@@ -3,6 +3,9 @@ import {
   videoActionTypes,
   videoByIdActionTypes,
   relatedVideosActionTypes,
+  searchVideosActionTypes,
+  subscribeVideosActionTypes,
+  channelVideosActionTypes,
 } from "../../constraints/actionTypes";
 
 export const getVideos = () => async (dispatch, getState) => {
@@ -121,6 +124,104 @@ export const getRelatedVideos = (id) => async (dispatch) => {
     dispatch({
       type: relatedVideosActionTypes.RELATED_VIDEOS_FAIL,
       payload: error.response.data.message,
+    });
+  }
+};
+
+export const getSearchedVideos = (keyword) => async (dispatch) => {
+  try {
+    dispatch({
+      type: searchVideosActionTypes.SEARCH_VIDEOS_REQUEST,
+    });
+
+    const { data } = await req.get("search", {
+      params: {
+        part: "snippet",
+        maxResults: 20,
+        q: keyword,
+        type: "video, channel",
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+    });
+
+    dispatch({
+      type: searchVideosActionTypes.SEARCH_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: searchVideosActionTypes.SEARCH_VIDEOS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getSubscribeVideos = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_REQUEST,
+    });
+
+    const { data } = await req.get("subscriptions", {
+      params: {
+        part: "snippet,contentDetails",
+        mine: true,
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+      headers: {
+        Authorization: `Bearer ${getState().auth.accessToken}`,
+      },
+    });
+
+    dispatch({
+      type: subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: subscribeVideosActionTypes.SUBSCRIBE_VIDEOS_FAIL,
+      payload: error.message,
+    });
+  }
+};
+
+export const getVideosByChannel = (id) => async (dispatch) => {
+  try {
+    dispatch({
+      type: channelVideosActionTypes.CHANNEL_VIDEOS_REQUEST,
+    });
+
+    //GET THE ID FOR PLAY LIST
+    const {
+      data: { items },
+    } = await req.get("channels", {
+      params: {
+        part: "contentDetails",
+        id: id,
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+    });
+
+    const uploadedPlaylist = items[0].contentDetails.relatedPlaylists.uploads;
+
+    //GET THE PLAY LIST FOR THE ABOVE ID
+    const { data } = await req.get("playlistItems", {
+      params: {
+        part: "snippet,contentDetails",
+        playlistId: uploadedPlaylist,
+        maxResults: 30,
+        key: process.env.REACT_APP_YOUTUBE_API_KEY,
+      },
+    });
+
+    dispatch({
+      type: channelVideosActionTypes.CHANNEL_VIDEOS_SUCCESS,
+      payload: data.items,
+    });
+  } catch (error) {
+    dispatch({
+      type: channelVideosActionTypes.CHANNEL_VIDEOS_FAIL,
+      payload: error.message,
     });
   }
 };

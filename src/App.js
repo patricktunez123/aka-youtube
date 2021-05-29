@@ -6,14 +6,15 @@ import Login from "./screens/Login";
 import Page404 from "./screens/Page404";
 import HomeScreen from "./screens/HomeScreen";
 import WatchScreen from "./screens/WatchScreen";
+import SearchScreen from "./screens/SearchScreen";
+import Subscriptions from "./screens/Subscriptions";
+import ChannelScreen from "./screens/ChannelScreen";
 import "./_app.scss";
 
 function App() {
   const history = useHistory();
-  const loading = useSelector((state) => state?.user?.loading);
-  const accessToken = useSelector((state) => state?.user?.accessToken);
-
-  // refactor this
+  const loading = useSelector((state) => state?.auth?.loading);
+  const accessToken = useSelector((state) => state?.auth?.accessToken);
 
   useEffect(() => {
     if (!loading && !accessToken) {
@@ -29,15 +30,25 @@ function App() {
         </Layout>
       </Route>
 
-      <Route path="/search" exact>
+      <Route path="/search/:query" exact>
         <Layout>
-          <h1>Search here</h1>
+          <SearchScreen />
         </Layout>
       </Route>
 
       <Route path="/watch/:id">
         <Layout>
           <WatchScreen />
+        </Layout>
+      </Route>
+      <Route path="/feed/subscriptions">
+        <Layout>
+          <Subscriptions />
+        </Layout>
+      </Route>
+      <Route path="/channel/:channelId">
+        <Layout>
+          <ChannelScreen />
         </Layout>
       </Route>
 
