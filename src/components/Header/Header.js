@@ -11,7 +11,7 @@ import profile from "../../files/images/profile.png";
 const Header = ({ handleToggleSideBar }) => {
   const [input, setInput] = useState("");
   const history = useHistory();
-  const { picture } = useSelector((state) => state.auth?.user);
+  const user = useSelector((state) => state.auth?.user);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,7 +48,7 @@ const Header = ({ handleToggleSideBar }) => {
         <MdMovieCreation size={28} />
         <MdApps size={28} />
         <MdNotifications size={28} />
-        <img src={picture ? picture : profile} alt="" />
+        <img src={user ? user.picture : profile} alt="" />
       </div>
     </div>
   );
