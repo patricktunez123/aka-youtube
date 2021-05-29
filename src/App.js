@@ -11,10 +11,8 @@ import "./_app.scss";
 
 function App() {
   const history = useHistory();
-  const loading = useSelector((state) => state?.user?.loading);
-  const accessToken = useSelector((state) => state?.user?.accessToken);
-
-  // refactor this
+  const loading = useSelector((state) => state?.auth?.loading);
+  const accessToken = useSelector((state) => state?.auth?.accessToken);
 
   useEffect(() => {
     if (!loading && !accessToken) {
@@ -40,6 +38,9 @@ function App() {
         <Layout>
           <WatchScreen />
         </Layout>
+      </Route>
+      <Route path="/feed/subscriptions">
+        <Layout>subdd</Layout>
       </Route>
       <Route path="/channel/:id">
         <Layout>

@@ -10,7 +10,7 @@ import { getChannelReducer } from "./channelReducer";
 import { commentsReducer } from "./commentsReducer";
 
 const reducers = combineReducers({
-  user: authReducer,
+  auth: authReducer,
   videosReducer,
   videoByIdReducer,
   getChannelReducer,

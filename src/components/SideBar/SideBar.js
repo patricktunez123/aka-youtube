@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { logOut } from "../../redux/actions/auth/auth";
+import { Link } from "react-router-dom";
+import { logOut } from "../../redux/actions/auth/auth.action";
 import { menus } from "../../data/menus";
 import "./_sideBar.scss";
 
@@ -23,15 +24,17 @@ const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
       {menus.map((menu, index) => (
         <div key={index}>
           {menu.name === "Logout" ? <hr /> : null}
-          <li
-            className={activeMenu === menu.name ? "active" : ""}
-            onClick={() =>
-              menu.name === "Logout" ? handleLogout() : handleClick(menu.name)
-            }
-          >
-            {menu.icon}
-            <span>{menu.name}</span>
-          </li>
+          <Link to={menu.url}>
+            <li
+              className={activeMenu === menu.name ? "active" : ""}
+              onClick={() =>
+                menu.name === "Logout" ? handleLogout() : handleClick(menu.name)
+              }
+            >
+              {menu.icon}
+              <span>{menu.name}</span>
+            </li>
+          </Link>
           {menu.name === "Logout" ? <hr /> : null}
         </div>
       ))}

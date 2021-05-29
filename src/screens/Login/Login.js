@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
-import { login } from "../../redux/actions/auth/auth";
+import { login } from "../../redux/actions/auth/auth.action";
 import "./_login.scss";
 
 const Login = () => {
@@ -15,7 +15,7 @@ const Login = () => {
   const history = useHistory();
 
   useEffect(() => {
-    if (state?.user?.accessToken !== null) {
+    if (state?.auth?.accessToken !== null) {
       history.push("/");
     }
   });
@@ -24,7 +24,7 @@ const Login = () => {
     <div className="login">
       <div className="login__container">
         <img src="http://pngimg.com/uploads/youtube/youtube_PNG2.png" alt="" />
-        <button onClick={() => handleLogin()}>Login with Gmail</button>
+        <button onClick={handleLogin}>Login with Gmail</button>
         <p>
           This app was created by
           <a

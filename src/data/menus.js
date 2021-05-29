@@ -12,10 +12,12 @@ export const menus = [
   {
     name: "Home",
     icon: <MdHome size={23} />,
+    url: "/",
   },
   {
     name: "Subscription",
     icon: <MdSubscriptions size={23} />,
+    url: "/feed/subscriptions",
   },
   {
     name: "Liked videos",

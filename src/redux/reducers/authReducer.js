@@ -10,7 +10,9 @@ const initialState = {
     : null,
 };
 
-export const authReducer = (prevState = initialState, { type, payload }) => {
+export const authReducer = (prevState = initialState, action) => {
+  const { type, payload } = action;
+
   switch (type) {
     case authActionTypes.LOGIN_REQUEST:
       return {
@@ -27,6 +29,7 @@ export const authReducer = (prevState = initialState, { type, payload }) => {
       return {
         ...prevState,
         loading: false,
+        accessToken: null,
         error: payload,
       };
     case authActionTypes.LOAD_PROFILE:
@@ -42,6 +45,6 @@ export const authReducer = (prevState = initialState, { type, payload }) => {
         accessToken: null,
       };
     default:
-      return null;
+      return prevState;
   }
 };
