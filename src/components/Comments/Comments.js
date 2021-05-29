@@ -12,6 +12,7 @@ import "./_comments.scss";
 const Comments = ({ videoId, allComments }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
+  const { picture } = useSelector((state) => state.auth?.user);
 
   const handleComment = (event) => {
     event.preventDefault();
@@ -35,7 +36,11 @@ const Comments = ({ videoId, allComments }) => {
     <div className="comments">
       <p>{allComments && numberWithCommas(allComments)} comments</p>
       <div className="comments__form d-flex w-100 my-2">
-        <img className="rounded-circle mr-3" src={profile} alt="" />
+        <img
+          className="rounded-circle mr-3"
+          src={picture ? picture : profile}
+          alt=""
+        />
         <form onSubmit={handleComment} className="d-flex flex-grow-1">
           <input
             type="text"

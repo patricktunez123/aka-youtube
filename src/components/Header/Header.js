@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
@@ -10,6 +11,7 @@ import profile from "../../files/images/profile.png";
 const Header = ({ handleToggleSideBar }) => {
   const [input, setInput] = useState("");
   const history = useHistory();
+  const { picture } = useSelector((state) => state.auth?.user);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -46,7 +48,7 @@ const Header = ({ handleToggleSideBar }) => {
         <MdMovieCreation size={28} />
         <MdApps size={28} />
         <MdNotifications size={28} />
-        <img src={profile} alt="" />
+        <img src={picture ? picture : profile} alt="" />
       </div>
     </div>
   );
