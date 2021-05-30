@@ -5,11 +5,13 @@ import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { Helmet } from "react-helmet";
 import { getSubscribeVideos } from "../../redux/actions/videos/videos.action";
 import VideoSideBar from "../../components/VideoSideBar";
+import SubWarningScreen from "../SubWarningScreen";
 import "./_subscriptions.scss";
 
 const Subscriptions = () => {
   const dispatch = useDispatch();
   const { loading, videos } = useSelector((state) => state.subscriptionsVideos);
+  const accessToken = useSelector((state) => state?.auth?.accessToken);
 
   useEffect(() => {
     dispatch(getSubscribeVideos());
@@ -20,14 +22,22 @@ const Subscriptions = () => {
       <Helmet>
         <title>Subscriptions</title>
       </Helmet>
-      {!loading ? (
-        videos?.map((video) => (
-          <VideoSideBar video={video} key={video.id} subScreen />
-        ))
+      {!loading && !accessToken ? (
+        <>
+          <SubWarningScreen />
+        </>
       ) : (
-        <SkeletonTheme color="#282424" highlightColor="#202020">
-          <Skeleton width="100%" height="160px" count={20} />
-        </SkeletonTheme>
+        <>
+          {!loading ? (
+            videos?.map((video) => (
+              <VideoSideBar video={video} key={video.id} subScreen />
+            ))
+          ) : (
+            <SkeletonTheme color="#282424" highlightColor="#202020">
+              <Skeleton width="100%" height="160px" count={20} />
+            </SkeletonTheme>
+          )}
+        </>
       )}
     </Container>
   );

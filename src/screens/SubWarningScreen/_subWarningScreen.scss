@@ -1,0 +1,48 @@
+@import "../../_base.scss";
+
+.subWarningScreen {
+  display: grid;
+  place-items: center;
+  height: 90vh;
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .icon {
+      font-size: 110px;
+      padding-bottom: 1.5rem;
+    }
+    h2,
+    p,
+    a {
+      padding-bottom: 0.3rem;
+    }
+    h2,
+    p {
+      color: $text-white;
+    }
+    a {
+      text-transform: uppercase;
+      padding: 0.5rem;
+      border: 1px solid $login-btn-border;
+      background: transparent;
+      border-radius: 5px;
+      color: $login-btn-border;
+      &:hover {
+        text-decoration: none;
+        color: $login-btn-border;
+      }
+    }
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .subWarningScreen {
+    &__content {
+      h2 {
+        font-size: 20px;
+      }
+    }
+  }
+}
