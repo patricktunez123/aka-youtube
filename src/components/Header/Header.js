@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { FaBars } from "react-icons/fa";
 import { AiOutlineSearch } from "react-icons/ai";
-import { MdNotifications, MdApps, MdMovieCreation } from "react-icons/md";
+import { MdNotifications, MdApps, MdVideoCall } from "react-icons/md";
 import { Link } from "react-router-dom";
 import "./_header.scss";
 import profile from "../../files/images/profile.png";
@@ -28,7 +28,7 @@ const Header = ({ handleToggleSideBar }) => {
       />
       <Link to="/">
         <img
-          src="http://pngimg.com/uploads/youtube/youtube_PNG2.png"
+          src="http://pngimg.com/uploads/youtube/youtube_PNG1.png"
           alt=""
           className="header__logo"
         />
@@ -45,10 +45,14 @@ const Header = ({ handleToggleSideBar }) => {
         </button>
       </form>
       <div className="header__icons">
-        <MdMovieCreation size={28} />
+        <MdVideoCall size={28} />
         <MdApps size={28} />
         <MdNotifications size={28} />
-        <img src={user ? user.picture : profile} alt="" />
+        <img
+          className="header__profile--picture"
+          src={user ? user.picture : profile}
+          alt=""
+        />
       </div>
     </div>
   );

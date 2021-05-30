@@ -9,6 +9,7 @@ import WatchScreen from "./screens/WatchScreen";
 import SearchScreen from "./screens/SearchScreen";
 import Subscriptions from "./screens/Subscriptions";
 import ChannelScreen from "./screens/ChannelScreen";
+import InfoScreen from "./screens/InfoScreen";
 import "./_app.scss";
 
 function App() {
@@ -41,11 +42,13 @@ function App() {
           <WatchScreen />
         </Layout>
       </Route>
+
       <Route path="/feed/subscriptions">
         <Layout>
           <Subscriptions />
         </Layout>
       </Route>
+
       <Route path="/channel/:channelId">
         <Layout>
           <ChannelScreen />
@@ -54,6 +57,12 @@ function App() {
 
       <Route path="/login" exact>
         <Login />
+      </Route>
+
+      <Route path="/oops">
+        <Layout>
+          <InfoScreen />
+        </Layout>
       </Route>
 
       <Route>

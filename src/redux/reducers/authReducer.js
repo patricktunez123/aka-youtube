@@ -2,11 +2,11 @@ import { authActionTypes } from "../constraints/actionTypes";
 
 const initialState = {
   loading: false,
-  accessToken: localStorage.getItem("aka-youtube-accessToken")
-    ? localStorage.getItem("aka-youtube-accessToken")
+  accessToken: sessionStorage.getItem("aka-youtube-accessToken")
+    ? sessionStorage.getItem("aka-youtube-accessToken")
     : null,
-  user: localStorage.getItem("aka-youtube-userProfile")
-    ? JSON.parse(localStorage.getItem("aka-youtube-userProfile"))
+  user: sessionStorage.getItem("aka-youtube-userProfile")
+    ? JSON.parse(sessionStorage.getItem("aka-youtube-userProfile"))
     : null,
 };
 
