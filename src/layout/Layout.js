@@ -15,9 +15,7 @@ const Layout = ({ children }) => {
           toggleSideBar={toggleSideBar}
           handleToggleSideBar={handleToggleSideBar}
         />
-        <Container fluid className="app__main">
-          {children}
-        </Container>
+        <Container className="app__main">{children}</Container>
       </div>
     </>
   );

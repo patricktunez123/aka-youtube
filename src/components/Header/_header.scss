@@ -60,7 +60,7 @@
     cursor: pointer;
     color: $text-white;
   }
-  img {
+  &__profile--picture {
     width: 40px;
     border-radius: 50%;
     object-fit: contain;

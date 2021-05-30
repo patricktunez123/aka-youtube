@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400&display=swap");
 
 $text-color: #b1bdb4;
 $black-primary: #202020;
@@ -19,7 +19,7 @@ body {
   background: $black-primary;
   background-attachment: fixed;
   color: $text-color;
-  font-size: "Roboto", sans-selif;
+  font-family: "Roboto", sans-serif;
   letter-spacing: 0.1px;
 }
 @mixin for-long-titles($numberOfTextLines) {
@@ -34,19 +34,19 @@ body {
   width: 100% !important;
 }
 
-// ::-webkit-scrollbar {
-//   width: 10px;
-// }
+::-webkit-scrollbar {
+  width: 0.5em;
+}
 
-// ::-webkit-scrollbar-track {
-//   background: $black-secondary;
-// }
+::-webkit-scrollbar-track {
+  background: transparent !important;
+}
 
-// ::-webkit-scrollbar-thumb {
-//   background: $border-color;
-//   border-radius: 3px;
-// }
+::-webkit-scrollbar-thumb {
+  background: $border-color;
+  border-radius: 3px;
+}
 
-// ::-webkit-scrollbar-thumb:hover {
-//   background: #cc0000;
-// }
+::-webkit-scrollbar-thumb:hover {
+  background: $text-color;
+}

@@ -1,0 +1,27 @@
+@import "../../_base.scss";
+
+.infoScreen {
+  height: 90vh;
+  display: grid;
+  place-items: center;
+  img {
+    object-fit: contain;
+    width: 300px;
+  }
+  h4,
+  p,
+  h5,
+  ul {
+    padding: 0;
+    margin: 0;
+  }
+}
+
+@media (max-width: $breakpoint-small) {
+  .infoScreen {
+    padding: 1px;
+    img {
+      width: 150px;
+    }
+  }
+}

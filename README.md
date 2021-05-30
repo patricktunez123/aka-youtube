@@ -1,4 +1,4 @@
-# Getting Started with Create React App
+# Aka YouTube! (YouTube Clone)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
@@ -13,7 +13,60 @@ Click [here](https://aka-youtube.vercel.app/) to view the demo of this app
 - Firebase
 - Bootstrap
 
-## Available Scripts
+## Dependencies
+
+- axios
+- bootstrap
+- firebase
+- moment
+- node-sass
+- numeral
+- react
+- react-bootstrap
+- react-dom
+- react-helmet
+- react-icons
+- react-infinite-scroll-component
+- react-lazy-load-image-component
+- react-loading-skeleton
+- react-redux
+- react-router-dom
+- react-scripts
+- react-show-more-text
+- redux
+- redux-devtools-extension
+- redux-thunk
+- web-vitals
+- @testing-library/jest-dom
+- @testing-library/react
+- @testing-library/user-event
+
+## How to set up this app on your local machine
+
+These instructions will get you a copy of this project up and running on your local machine.
+
+## Prerequisites
+
+To install this project on your local machine, you need first to clone the repository `https://github.com/patricktunez123/aka-youtube.git` or download the zip file and once this is set up you're gonna need NODEJS installed on your machine.
+
+## Installing
+
+The installation of this application is straightforward, After cloning this repository to your local machine, cd into it using your terminal and run the following command
+
+- yarn
+
+It will install all the node_modules for the project.
+
+## Set environment variables
+
+After successfully installed all packages the next step is to set up environment variables, in root folder create a file and call it .env and open this file in any text editor of your choice then paste the following into it (Do not forget to edit it accordingly):
+
+- REACT_APP_YOUTUBE_API_KEY=put-your-YouTube-API-KEY-here
+
+Learn how to create a youtube API key [here](https://www.youtube.com/watch?v=pP4zvduVAqo), if you face
+any problem setting up this project pls whatsApp me +250781429268
+
+## After the project set up then use these available scripts according to what you need to do with the project
 
 In the project directory, you can run:
 
@@ -42,6 +95,7 @@ See the section about [deployment](https://facebook.github.io/create-react-app/d
 
 ### `yarn eject`
 
+**Attention! by running this script make sure you know what you are doing!**
 **Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
 If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
@@ -79,3 +133,49 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+## Features
+
+- Fully responsive (Tablets, Mobile, Big screens)
+- User can search for videos
+- This project is using real data from YouTube API
+- User can watch video
+- User can comment on videos
+- User can see their subscribed channels
+- User can login
+- User can choose category
+- Nice loaders
+- User can subscribe
+
+# Author
+
+Patrick TUNEZERWANE, +250781429268
+
+- [Linkedin](https://www.linkedin.com/in/patrick-tunezerwane-0a901ba8/)
+- [Twitter](https://twitter.com/tunezpatrick)
+
+---
+
+## License
+
+MIT License
+
+Copyright (c) 2021 Patrick TUNEZERWANE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
