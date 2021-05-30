@@ -12,6 +12,8 @@ const Header = ({ handleToggleSideBar }) => {
   const [input, setInput] = useState("");
   const history = useHistory();
   const user = useSelector((state) => state.auth?.user);
+  const loading = useSelector((state) => state?.auth?.loading);
+  const accessToken = useSelector((state) => state?.auth?.accessToken);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -48,11 +50,17 @@ const Header = ({ handleToggleSideBar }) => {
         <MdVideoCall size={28} />
         <MdApps size={28} />
         <MdNotifications size={28} />
-        <img
-          className="header__profile--picture"
-          src={user ? user.picture : profile}
-          alt=""
-        />
+        {!loading && !accessToken ? (
+          <Link to="/login" className="signin">
+            Sign in
+          </Link>
+        ) : (
+          <img
+            className="header__profile--picture"
+            src={user ? user.picture : profile}
+            alt=""
+          />
+        )}
       </div>
     </div>
   );

@@ -42,6 +42,9 @@ const Login = () => {
             Patrick (Developer)
           </a>
         </p>
+        <p>
+          <Link to="/">Watch videos</Link>
+        </p>
       </div>
     </div>
   );
