@@ -7,7 +7,7 @@ export const getChannelReducer = (
   prevState = {
     loading: false,
     channel: {},
-    subscriptionStatus: null,
+    subscriptionStatus: false,
   },
   action
 ) => {

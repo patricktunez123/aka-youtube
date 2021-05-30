@@ -48,8 +48,6 @@ export const setSubscription = (id) => async (dispatch, getState) => {
       type: subscriptionActionTypes.SET_SUBSCRIPTION_STATUS,
       payload: data.items.length !== 0,
     });
-
-    console.log(data);
   } catch (error) {
     console.log(error.message);
   }
