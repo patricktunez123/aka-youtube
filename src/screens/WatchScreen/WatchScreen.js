@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import Skeleton, { SkeletonTheme } from "react-loading-skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { Helmet } from "react-helmet";
-import YouTube from "react-youtube";
+// import YouTube from "react-youtube";
 import VideoSideBar from "../../components/VideoSideBar";
 import VideoData from "../../components/VideoData";
 import Comments from "../../components/Comments";
@@ -27,21 +27,21 @@ const WatchScreen = () => {
   }, [id, dispatch]);
 
   const { video, loading } = useSelector((state) => state.videoByIdReducer);
-  const opts = {
-    height: "399",
-    width: "730",
-    playerVars: {
-      autoplay: 1,
-    },
-  };
+  // const opts = {
+  //   height: "350",
+  //   width: "90%",
+  //   playerVars: {
+  //     autoplay: 1,
+  //   },
+  // };
 
-  const _onReady = (event) => {
-    event.target.playVideo();
-  };
+  // const _onReady = (event) => {
+  //   event.target.playVideo();
+  // };
 
-  const _onEnd = (event) => {
-    event.target.playVideo();
-  };
+  // const _onEnd = (event) => {
+  //   event.target.playVideo();
+  // };
   return (
     <Row>
       <Helmet>
@@ -49,7 +49,17 @@ const WatchScreen = () => {
       </Helmet>
       <Col lg={8}>
         <div className="watch--screen__player">
-          <YouTube videoId={id} opts={opts} onReady={_onReady} onEnd={_onEnd} />
+          <iframe
+            src={`https://www.youtube.com/embed/${id}?autoplay=1`}
+            frameBorder="0"
+            title={video?.snippet?.title}
+            allowFullScreen
+            width="100%"
+            height="100%"
+            allow="autoplay"
+            controls="0"
+          ></iframe>
+          {/* <YouTube videoId={id} opts={opts} onReady={_onReady} onEnd={_onEnd} /> */}
         </div>
         {!loading ? (
           <VideoData video={video} videoId={id} />
