@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import SingleComment from "../SingleComment";
 import {
   addComment,
@@ -13,12 +14,19 @@ const Comments = ({ videoId, allComments }) => {
   const dispatch = useDispatch();
   const [text, setText] = useState("");
   const user = useSelector((state) => state.auth?.user);
+  const loading = useSelector((state) => state?.auth?.loading);
+  const accessToken = useSelector((state) => state?.auth?.accessToken);
+  const history = useHistory();
 
   const handleComment = (event) => {
     event.preventDefault();
     if (text.length === 0) return;
     dispatch(addComment(videoId, text));
     setText("");
+  };
+
+  const redirectToLogin = () => {
+    history.push("/login");
   };
 
   const comments = useSelector((state) => state.commentsList.comments);
@@ -41,16 +49,27 @@ const Comments = ({ videoId, allComments }) => {
           src={user ? user.picture : profile}
           alt=""
         />
-        <form onSubmit={handleComment} className="d-flex flex-grow-1">
-          <input
-            type="text"
-            placeholder="Add a public comment..."
-            className="flex-grow-1"
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-          />
-          <button className="border-0 p-2">Comment</button>
-        </form>
+        {!loading && !accessToken ? (
+          <form className="d-flex flex-grow-1">
+            <input
+              type="text"
+              placeholder="Add a public comment..."
+              className="flex-grow-1"
+              onClick={() => redirectToLogin()}
+            />
+          </form>
+        ) : (
+          <form onSubmit={handleComment} className="d-flex flex-grow-1">
+            <input
+              type="text"
+              placeholder="Add a public comment..."
+              className="flex-grow-1"
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
+            <button className="border-0 p-2">Comment</button>
+          </form>
+        )}
       </div>
       <div className="comments__list">
         {_comments?.map((comment, index) => (

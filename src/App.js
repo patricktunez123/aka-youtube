@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { Route, Switch, useHistory } from "react-router-dom";
-import { useSelector } from "react-redux";
+import React from "react";
+import { Route, Switch } from "react-router-dom";
 import Layout from "./layout";
 import Login from "./screens/Login";
 import Page404 from "./screens/Page404";
@@ -13,16 +12,6 @@ import InfoScreen from "./screens/InfoScreen";
 import "./_app.scss";
 
 function App() {
-  const history = useHistory();
-  const loading = useSelector((state) => state?.auth?.loading);
-  const accessToken = useSelector((state) => state?.auth?.accessToken);
-
-  useEffect(() => {
-    if (!loading && !accessToken) {
-      history.push("/login");
-    }
-  }, [history, loading, accessToken]);
-
   return (
     <Switch>
       <Route path="/" exact>

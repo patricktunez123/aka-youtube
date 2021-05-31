@@ -87,7 +87,7 @@ const Video = ({ video, channelScreen }) => {
 
       {!channelScreen && (
         <div className="video__channel">
-          <LazyLoadImage src={channelIcon?.url} effect="blur" />
+          <LazyLoadImage src={channelIcon?.url} effect="opacity" />
           <p>{channelTitle}</p>
         </div>
       )}

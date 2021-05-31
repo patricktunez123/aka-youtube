@@ -143,6 +143,9 @@ export const menus5 = [
     icon: <MdFeedback size={23} />,
     url: "/oops",
   },
+];
+
+export const menus6 = [
   {
     name: "Logout",
     icon: <MdExitToApp size={23} />,

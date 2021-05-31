@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { login } from "../../redux/actions/auth/auth.action";
 import "./_login.scss";
 
@@ -23,18 +24,26 @@ const Login = () => {
   return (
     <div className="login">
       <div className="login__container">
-        <img src="http://pngimg.com/uploads/youtube/youtube_PNG2.png" alt="" />
+        <Link to="/">
+          <img
+            src="http://pngimg.com/uploads/youtube/youtube_PNG1.png"
+            alt=""
+          />
+        </Link>
         <button onClick={handleLogin}>Login with Gmail</button>
+        <p>This app was created using ReactJS, Redux and Firebase.</p>
         <p>
-          This app was created by
+          WhatsApp{" "}
           <a
-            href="https://www.linkedin.com/in/patrick-tunezerwane-0a901ba8/"
+            href="https://wa.me/+250781429268"
             target="_blank"
             rel="noreferrer"
           >
-            Patrick
+            Patrick (Developer)
           </a>
-          using ReactJS, Redux and Firebase
+        </p>
+        <p>
+          <Link to="/">Watch videos</Link>
         </p>
       </div>
     </div>

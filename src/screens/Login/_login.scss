@@ -18,6 +18,7 @@
       padding: 0.5rem;
       border: none;
       margin-bottom: 1rem;
+      margin-top: 3rem;
       border-radius: 5px;
       &:focus {
         outline: none;
@@ -25,8 +26,8 @@
     }
   }
   img {
-    width: 130px;
-    height: 130px;
+    width: 100px;
+    height: 100px;
     object-fit: contain;
   }
 }

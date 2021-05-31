@@ -19,6 +19,9 @@ const VideoData = ({ video, videoId }) => {
 
   useEffect(() => {
     dispath(getChannelDetails(video?.snippet?.channelId));
+  }, [dispath, video?.snippet?.channelId]);
+
+  useEffect(() => {
     dispath(setSubscription(video?.snippet?.channelId));
   }, [dispath, video?.snippet?.channelId]);
 

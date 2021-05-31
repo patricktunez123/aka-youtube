@@ -6,6 +6,7 @@
   object-fit: contain;
   input {
     background: transparent;
+    color: $text-white;
     border: none;
     border-bottom: 1.5px solid $border-color;
     &:focus {

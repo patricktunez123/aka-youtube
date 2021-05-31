@@ -1,12 +1,22 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { AiOutlineLogin } from "react-icons/ai";
 import { logOut } from "../../redux/actions/auth/auth.action";
-import { menus1, menus2, menus3, menus4, menus5 } from "../../data/menus";
+import {
+  menus1,
+  menus2,
+  menus3,
+  menus4,
+  menus5,
+  menus6,
+} from "../../data/menus";
 import "./_sideBar.scss";
 
 const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
   const [activeMenu, setActiveMenu] = useState("Home");
+  const loading = useSelector((state) => state?.auth?.loading);
+  const accessToken = useSelector((state) => state?.auth?.accessToken);
 
   const handleClick = (value) => {
     setActiveMenu(value);
@@ -79,19 +89,45 @@ const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
         </div>
       ))}
       <hr />
+
       {menus5.map((menu, index) => (
         <div key={index}>
           <Link to={menu.url}>
             <li
               className={activeMenu === menu.name ? "active" : ""}
-              onClick={() =>
-                menu.name === "Logout" ? handleLogout() : handleClick(menu.name)
-              }
+              onClick={() => handleClick(menu.name)}
             >
               {menu.icon}
               <span>{menu.name}</span>
             </li>
           </Link>
+        </div>
+      ))}
+
+      {menus6.map((menu, index) => (
+        <div key={index}>
+          {!loading && !accessToken ? (
+            <Link to="/login">
+              <li>
+                <AiOutlineLogin />
+                <span>Login</span>
+              </li>
+            </Link>
+          ) : (
+            <Link to={menu.url}>
+              <li
+                className={activeMenu === menu.name ? "active" : ""}
+                onClick={() =>
+                  menu.name === "Logout"
+                    ? handleLogout()
+                    : handleClick(menu.name)
+                }
+              >
+                {menu.icon}
+                <span>{menu.name}</span>
+              </li>
+            </Link>
+          )}
         </div>
       ))}
       <hr />

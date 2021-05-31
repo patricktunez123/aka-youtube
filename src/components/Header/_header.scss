@@ -59,6 +59,19 @@
     align-items: center;
     cursor: pointer;
     color: $text-white;
+    .signin {
+      text-transform: uppercase;
+      padding: 0.4rem;
+      border: 1px solid $login-btn-border;
+      background: transparent;
+      border-radius: 5px;
+      color: $login-btn-border;
+      font-size: 14px;
+      &:hover {
+        text-decoration: none;
+        color: $login-btn-border;
+      }
+    }
   }
   &__profile--picture {
     width: 40px;

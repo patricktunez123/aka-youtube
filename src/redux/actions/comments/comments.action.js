@@ -43,7 +43,7 @@ export const addComment = (id, text) => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await req.post("commentThreads", object, {
+    await req.post("commentThreads", object, {
       params: {
         part: "snippet",
         key: process.env.REACT_APP_YOUTUBE_API_KEY,
@@ -52,11 +52,11 @@ export const addComment = (id, text) => async (dispatch, getState) => {
         Authorization: `Bearer ${getState().auth?.accessToken}`,
       },
     });
-    console.log(data);
+
     dispatch({
       type: addCcommentActionTypes.ADD_COMMENT_SUCCESS,
     });
-    setTimeout(() => dispatch(getCommentsById(id)), 300);
+    setTimeout(() => dispatch(getCommentsById(id)), 500);
   } catch (error) {
     console.log(error);
     dispatch({
