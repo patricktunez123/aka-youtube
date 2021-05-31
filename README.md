@@ -147,6 +147,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - User can choose category
 - Nice loaders
 - User can subscribe
+- User needs to login to comment
 
 # Author
 
