@@ -15,7 +15,9 @@
   &__bottom--menu {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
+    font-size: 12px;
+    flex-wrap: wrap;
   }
   &__menu--header {
     color: #9c9c9c;
@@ -88,5 +90,8 @@
     transform: translateX(-100%);
     position: fixed;
     z-index: 999;
+    &__bottom--menu {
+      display: block;
+    }
   }
 }

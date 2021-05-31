@@ -2,7 +2,11 @@
 
 .videoData {
   &__top {
-    cursor: pointer;
+    color: $text-white;
+    span {
+      color: $text-color;
+      font-size: 1rem;
+    }
   }
   &__channel {
     border-bottom: 0.1px solid $border-color;

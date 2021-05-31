@@ -31,17 +31,19 @@ const VideoData = ({ video, videoId }) => {
         <h5>{video?.snippet?.title}</h5>
         <div className="d-flex justify-content-between align-items-center py-1">
           <span>
-            {numeral(video?.statistics?.viewCount).format("0.a")} views •
-            {moment(video?.snippet?.publishedAt).fromNow()}
+            <span className="numeral-uppercasing">
+              {numeral(video?.statistics?.viewCount).format("0.a")}
+            </span>{" "}
+            views • {moment(video?.snippet?.publishedAt).fromNow()}
           </span>
 
           <div className="">
-            <span className="mr-3">
-              <MdThumbUp size={26} />
+            <span className="mr-3 numeral-uppercasing">
+              <MdThumbUp size={25} className="mr-1" />
               {numeral(video?.statistics?.likeCount).format("0.a")}
             </span>
-            <span className="mr-3">
-              <MdThumbDown size={26} />
+            <span className="mr-3 numeral-uppercasing">
+              <MdThumbDown size={25} className="mr-1" />
               {numeral(video?.statistics?.dislikeCount).format("0.a")}
             </span>
           </div>
