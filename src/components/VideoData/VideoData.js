@@ -59,7 +59,9 @@ const VideoData = ({ video, videoId }) => {
           <div className="d-flex flex-column">
             <span>{video?.snippet?.channelTitle}</span>
             <span>
-              {numeral(channel?.statistics?.subscriberCount).format("0.a")}{" "}
+              <span className="numeral-uppercasing">
+                {numeral(channel?.statistics?.subscriberCount).format("0.a")}
+              </span>{" "}
               Subscribers
             </span>
           </div>

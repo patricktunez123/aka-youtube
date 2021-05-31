@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import { AiFillEye } from "react-icons/ai";
 import moment from "moment";
 import numeral from "numeral";
 import { LazyLoadImage } from "react-lazy-load-image-component";
@@ -80,7 +79,10 @@ const Video = ({ video, channelScreen }) => {
       <div className="video__title">{title}</div>
       <div className="video__details">
         <span>
-          <AiFillEye /> {numeral(views).format("0.a")} views •
+          <span className="numeral-uppercasing">
+            {numeral(views).format("0.a")}{" "}
+          </span>
+          views •
         </span>
         <span> {moment(publishedAt).fromNow()} </span>
       </div>
