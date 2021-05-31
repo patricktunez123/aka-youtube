@@ -23,6 +23,9 @@ body {
   font-family: "Roboto", sans-serif;
   letter-spacing: 0.1px;
 }
+.numeral-uppercasing {
+  text-transform: uppercase;
+}
 @mixin for-long-titles($numberOfTextLines) {
   // when the title is long then it will collapse at two lines and put ... sign
   display: -webkit-box;

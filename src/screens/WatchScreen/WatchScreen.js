@@ -28,8 +28,8 @@ const WatchScreen = () => {
 
   const { video, loading } = useSelector((state) => state.videoByIdReducer);
   const opts = {
-    // height: "100vh",
-    // width: "100%",
+    height: "399",
+    width: "730",
     playerVars: {
       autoplay: 1,
     },
@@ -39,6 +39,9 @@ const WatchScreen = () => {
     event.target.playVideo();
   };
 
+  const _onEnd = (event) => {
+    event.target.playVideo();
+  };
   return (
     <Row>
       <Helmet>
@@ -46,20 +49,7 @@ const WatchScreen = () => {
       </Helmet>
       <Col lg={8}>
         <div className="watch--screen__player">
-          {/* <iframe
-            src={`https://www.youtube.com/embed/${id}`}
-            frameBorder="0"
-            title={video?.snippet?.title}
-            allowFullScreen
-            width="100%"
-            height="100%"
-          ></iframe> */}
-          <YouTube
-            containerClassName="player"
-            videoId={id}
-            opts={opts}
-            onReady={_onReady}
-          />
+          <YouTube videoId={id} opts={opts} onReady={_onReady} onEnd={_onEnd} />
         </div>
         {!loading ? (
           <VideoData video={video} videoId={id} />

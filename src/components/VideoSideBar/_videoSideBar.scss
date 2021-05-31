@@ -1,7 +1,6 @@
 @import "../../_base.scss";
 
 .video--sideBar {
-  border-bottom: 0.3px solid $border-color;
   cursor: pointer;
 
   &__left {
@@ -26,14 +25,18 @@
     position: absolute;
     bottom: 0.6rem;
     right: 1.2rem;
-    font-size: 0.9rem;
-    padding: 0.2rem;
+    font-size: 0.8rem;
+    padding: 0.1rem;
     background: #080808ec;
     border-radius: 3px;
+    color: $text-white;
   }
 
   &__details {
-    font-size: 0.9rem;
+    font-size: 0.8rem;
+    span {
+      text-transform: uppercase;
+    }
   }
 
   &__title {
@@ -58,7 +61,7 @@
       cursor: pointer;
     }
     p {
-      font-size: 0.9rem;
+      font-size: 0.8rem;
       @include for-long-titles(1);
     }
   }

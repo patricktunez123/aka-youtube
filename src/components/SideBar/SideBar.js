@@ -137,17 +137,17 @@ const SideBar = ({ toggleSideBar, handleToggleSideBar }) => {
           target="_blank"
           rel="noreferrer"
         >
-          About
+          About the Developer
         </a>
         <a href="https://wa.me/+250781429268" target="_blank" rel="noreferrer">
-          Contact
+          WhatsApp Me
         </a>
         <a
           href="https://github.com/patricktunez123/aka-youtube"
           target="_blank"
           rel="noreferrer"
         >
-          Source code
+          Project Source code
         </a>
       </div>
     </nav>
