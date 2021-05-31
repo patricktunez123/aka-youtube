@@ -40,6 +40,7 @@ Click [here](https://aka-youtube.vercel.app/) to view the demo of this app
 - @testing-library/jest-dom
 - @testing-library/react
 - @testing-library/user-event
+- react-youtube
 
 ## How to set up this app on your local machine
 
